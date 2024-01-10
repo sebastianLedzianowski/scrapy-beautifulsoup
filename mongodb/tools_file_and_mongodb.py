@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 from mongoengine import DoesNotExist
 from mongodb.models import Quote, Author
@@ -9,22 +10,22 @@ def open_file(document):
         try:
             with open(document, 'r') as file:
                 document_data = json.load(file)
-                print("The document is opened.")
+                logging.info("The document is opened.")
                 return document_data
         except Exception as e:
-            return f'Document not opened: {e}'
+            return logging.warning(f'Document not opened: {e}')
     else:
-        return f'Document not found: {document}'
+        return logging.info(f'Document not found: {document}')
 
 
 def save_to_file(data, filepath):
     try:
         with open(filepath, 'w') as file:
             json.dump(data, file, indent=4)
-        print(f'The data has been saved to a file: {filepath}')
+        logging.info(f'The data has been saved to a file: {filepath}')
         return True
     except Exception as e:
-        print(f'An error occurred while writing to the file {filepath}: {e}')
+        logging.warning(f'An error occurred while writing to the file {filepath}: {e}')
         return False
 
 
@@ -45,8 +46,8 @@ def save_to_database(model, data):
         if not text_exists(model, text_to_save):
             new_data = model(**data)
             new_data.save()
-            print(f"Added new data to database: {text_to_save}")
+            logging.info(f"Added new data to database: {text_to_save}")
         else:
-            print(f"Data already exists in database: {text_to_save}")
+            logging.info(f"Data already exists in database: {text_to_save}")
     except KeyError as e:
-        print(f"KeyError: {e}. Check if the required fields are present in the data.")
+        logging.warning(f"KeyError: {e}. Check if the required fields are present in the data.")
