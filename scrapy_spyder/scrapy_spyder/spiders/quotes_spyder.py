@@ -5,7 +5,7 @@ from scrapy.crawler import CrawlerProcess
 
 
 class QuotesSpider(scrapy.Spider):
-    custom_settings = {"FEED_FORMAT": "json", "FEED_URI": "quotes.json"}
+    custom_settings = {"FEED_FORMAT": "json", "FEED_URI": "quotes_spyder.json"}
 
     name = "quotes"
     allowed_domains = ["quotes.toscrape.com"]
