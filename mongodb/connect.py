@@ -13,4 +13,4 @@ def connect_mongodb():
         )
         logging.info('Connection to MongoDB successful.')
     except ConnectionError as e:
-        logging.warning(f'Error connecting to MongoDB: {e}')
+        logging.error(f'Error connecting to MongoDB: {e}')

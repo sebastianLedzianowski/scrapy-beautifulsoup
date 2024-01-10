@@ -25,7 +25,7 @@ def save_to_file(data, filepath):
         logging.info(f'The data has been saved to a file: {filepath}')
         return True
     except Exception as e:
-        logging.warning(f'An error occurred while writing to the file {filepath}: {e}')
+        logging.error(f'An error occurred while writing to the file {filepath}: {e}')
         return False
 
 
@@ -50,4 +50,4 @@ def save_to_database(model, data):
         else:
             logging.info(f"Data already exists in database: {text_to_save}")
     except KeyError as e:
-        logging.warning(f"KeyError: {e}. Check if the required fields are present in the data.")
+        logging.error(f"KeyError: {e}. Check if the required fields are present in the data.")
