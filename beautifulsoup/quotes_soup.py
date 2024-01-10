@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from mongodb.models import Quote
-from mongodb.tools_file_and_mongodb import save_to_database, save_to_file
+from mongodb.tools_file_and_mongodb import save_to_file
 from mongodb.connect import connect_mongodb
 
 
@@ -51,5 +50,4 @@ if __name__ == "__main__":
             }
 
             quotes_database.append(new_quote)
-            save_to_database(Quote, new_quote)
     save_to_file(quotes_database, 'quotes_soup.json')

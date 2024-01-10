@@ -2,8 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-from mongodb.models import Author
-from mongodb.tools_file_and_mongodb import save_to_database, save_to_file
+from mongodb.tools_file_and_mongodb import save_to_file
 from mongodb.connect import connect_mongodb
 
 
@@ -75,5 +74,4 @@ if __name__ == "__main__":
                 'description': description
             }
             authors_database.append(new_authors)
-            save_to_database(Author, new_authors)
     save_to_file(authors_database, 'authors_soup.json')
