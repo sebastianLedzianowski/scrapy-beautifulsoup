@@ -1,27 +1,27 @@
-# Scrapy BeautifulSoup Web Scraping Project
+# Scrapy BeautifulSoup Web Scraping Project 🕷️📜
 
 This project is a web scraping application using Scrapy and BeautifulSoup to collect quotes and author information from the [quotes.toscrape.com](https://quotes.toscrape.com) website. The data is then stored in both JSON files and a MongoDB database.
 
 
 
-## Table of Contents
+## Table of Contents 📚
 
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Created](#created)
-- [License](#license)
+- [Prerequisites 🛠️](#prerequisites)
+- [Installation ⬇️](#installation)
+- [Configuration ⚙️](#configuration)
+- [Usage 🚀](#usage)
+- [Project Structure 📁](#project-structure)
+- [Created 👤](#created)
+- [License 📄](#license)
 
-## Prerequisites
+## Prerequisites 🛠️
 
 Make sure you have the following installed on your machine:
 
 - Python 3.11
 - [MongoDB](https://www.mongodb.com/try/download/community)
 
-## Installation
+## Installation ⬇️
 
 1.Clone the repository:
 
@@ -47,7 +47,7 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 ```bash
 poetry install
 ```
-## Configuration
+## Configuration ⚙️
 
 To run this project, you will need to add the following environment variables to your `.env` file.
 
@@ -61,7 +61,7 @@ To run this project, you will need to add the following environment variables to
 
 ---
 
-## Usage
+## Usage 🚀
 
 1.Run the web scraping script to collect quotes and author information:
 
@@ -85,7 +85,7 @@ python import_to_mongodb.py
 The `import_to_mongodb` script reads data from the Scrapy and BeautifulSoup JSON files and imports it into MongoDB. Make sure to configure the MongoDB connection details in the `.env` file.
 
 
-## Project Structure
+## Project Structure 📁
 
 - **mongodb/**
   - `connect.py`: Module for connecting to MongoDB.
@@ -115,11 +115,11 @@ The `import_to_mongodb` script reads data from the Scrapy and BeautifulSoup JSON
 
 
 
-## Created
+## Created 👤
 
 - [Sebastian Ledzianowski](https://github.com/sebastianLedzianowski)
 
 
-## License
+## License 📄
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
