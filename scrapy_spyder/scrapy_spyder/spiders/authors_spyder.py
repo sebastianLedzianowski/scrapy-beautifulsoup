@@ -41,7 +41,7 @@ class AuthorsSpider(scrapy.Spider):
         yield {
             "fullname": fullname,
             "born_date": born_date,
-            "born_location": born_location,
+            "born_location": born_location[3:],
             "description": description
         }
 

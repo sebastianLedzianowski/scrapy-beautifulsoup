@@ -13,10 +13,14 @@ class QuotesSpider(scrapy.Spider):
 
     def parse(self, response):
         for quote in response.xpath("//div[@class='quote']"):
+            tags = quote.xpath("div[@class='tags']/a/text()").extract()
+            author = quote.xpath("span/small/text()").extract_first()
+            quote = quote.xpath("span[@class='text']/text()").get()
+
             yield {
-                'tags': quote.xpath("div[@class='tags']/a/text()").extract(),
-                'author': quote.xpath("span/small/text()").extract_first(),
-                'quote': quote.xpath("span[@class='text']/text()").get()
+                'tags': tags,
+                'author': author,
+                'quote': quote
             }
 
         next_link = self.next_link(response)
