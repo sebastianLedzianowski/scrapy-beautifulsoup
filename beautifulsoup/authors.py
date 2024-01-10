@@ -63,12 +63,17 @@ if __name__ == "__main__":
         authors = web_scraping_authors(url, author_link)
 
         for author_date in authors:
+            fullname = author_date['fullname']
+            born_date = author_date['born_date']
+            born_location = author_date['born_location']
+            description = author_date['description']
+
             new_authors = {
-                'fullname': author_date['fullname'],
-                'born_date': author_date['born_date'],
-                'born_location': author_date['born_location'],
-                'description': author_date['description']
+                'fullname': fullname,
+                'born_date': born_date,
+                'born_location': born_location[3:],
+                'description': description
             }
             authors_database.append(new_authors)
             save_to_database(Author, new_authors)
-    save_to_file(authors_database, 'beautifulsoup/authors_soup.json')
+    save_to_file(authors_database, 'authors_soup.json')

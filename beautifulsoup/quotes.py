@@ -20,8 +20,8 @@ def web_scraping_quote(url, page_number):
         quote_text = quotes[i].text
         author_name = authors[i].text
         tagsforquote = tags[i].find_all('a', class_='tag')
-        tag_list = [tag.text for tag in tagsforquote]
 
+        tag_list = [tag.text for tag in tagsforquote]
         quote_data = {
             "quote": quote_text,
             "author": author_name,
@@ -40,11 +40,16 @@ if __name__ == "__main__":
     for page_number in range(1, 11):
         quotes = web_scraping_quote(url, page_number)
         for quote_data in quotes:
+            quote = quote_data['quote']
+            author = quote_data["author"]
+            tags = quote_data['tags']
+
             new_quote = {
-                'quote': quote_data['quote'],
-                'author': quote_data["author"],
-                'tags': quote_data['tags']
+                'quote': quote,
+                'author': author,
+                'tags': tags
             }
+
             quotes_database.append(new_quote)
             save_to_database(Quote, new_quote)
     save_to_file(quotes_database, 'quotes_soup.json')
