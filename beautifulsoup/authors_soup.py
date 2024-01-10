@@ -6,7 +6,7 @@ from mongodb.tools_file_and_mongodb import save_to_file
 from mongodb.connect import connect_mongodb
 
 
-def get_author_link(url, page_number):
+def get_author_link(url: str, page_number: int) -> str:
     url_with_page = f"{url}/page/{page_number}/"
     response = requests.get(url_with_page)
     soup = BeautifulSoup(response.text, 'lxml')
@@ -16,7 +16,7 @@ def get_author_link(url, page_number):
     return links
 
 
-def web_scraping_authors(url, authors_link):
+def web_scraping_authors(url: str, authors_link: str) -> str:
     url_with_page = f"{url}{authors_link}"
     response = requests.get(url_with_page)
     soup = BeautifulSoup(response.text, 'lxml')
@@ -38,7 +38,7 @@ def web_scraping_authors(url, authors_link):
             "fullname": fullname_text,
             "born_date": born_date_text,
             "born_location": born_location_text,
-            "description": description_text
+            "description": description_text.strip()
         }
         author_list.append(author_date)
 
@@ -46,7 +46,6 @@ def web_scraping_authors(url, authors_link):
 
 
 if __name__ == "__main__":
-    connect_mongodb()
     url = 'http://quotes.toscrape.com'
     link_authors = []
 

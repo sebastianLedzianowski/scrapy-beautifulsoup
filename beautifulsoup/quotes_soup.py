@@ -4,7 +4,7 @@ from mongodb.tools_file_and_mongodb import save_to_file
 from mongodb.connect import connect_mongodb
 
 
-def web_scraping_quote(url, page_number):
+def web_scraping_quote(url: str, page_number: int) -> str:
     url_with_page = f"{url}/page/{page_number}/"
     response = requests.get(url_with_page)
     soup = BeautifulSoup(response.text, 'lxml')
@@ -22,7 +22,7 @@ def web_scraping_quote(url, page_number):
 
         tag_list = [tag.text for tag in tagsforquote]
         quote_data = {
-            "quote": quote_text,
+            "quote": quote_text.strip(),
             "author": author_name,
             "tags": tag_list
         }

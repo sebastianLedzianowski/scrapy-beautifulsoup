@@ -1,3 +1,4 @@
+from typing import Dict, Any, Union
 from urllib.parse import urljoin
 
 import scrapy
@@ -11,7 +12,7 @@ class AuthorsSpider(scrapy.Spider):
     allowed_domains = ["quotes.toscrape.com"]
     start_urls = ["https://quotes.toscrape.com"]
 
-    def parse(self, response):
+    def parse(self, response: scrapy.http.Response) -> None:
         author_links = self.author_links(response)
         for author_link in author_links:
             if author_link:
@@ -23,16 +24,16 @@ class AuthorsSpider(scrapy.Spider):
             full_next_url = urljoin(self.start_urls[0], next_link)
             yield scrapy.Request(url=full_next_url, callback=self.parse)
 
-    def author_links(self, response):
+    def author_links(self, response: scrapy.http.Response) -> list[str]:
         author_links = response.xpath(
             "//span[@class='text']/following-sibling::span/small[@class='author']/following-sibling::a[@href]/@href").getall()
         return author_links
 
-    def next_link(self, response):
+    def next_link(self, response: scrapy.http.Response) -> str:
         next_link = response.xpath("//li[@class='next']/a/@href").get()
         return next_link
 
-    def parse_author(self, response):
+    def parse_author(self, response: scrapy.http.Response) -> Dict[str, Any]:
         fullname = response.xpath("//h3[@class='author-title']/text()").extract_first()
         born_date = response.xpath("//span[@class='author-born-date']/text()").extract_first()
         born_location = response.xpath("//span[@class='author-born-location']/text()").extract_first()
@@ -41,8 +42,8 @@ class AuthorsSpider(scrapy.Spider):
         yield {
             "fullname": fullname,
             "born_date": born_date,
-            "born_location": born_location[3:],
-            "description": description
+            "born_location": born_location[3:] if born_location else None,
+            "description": description.strip()
         }
 
 

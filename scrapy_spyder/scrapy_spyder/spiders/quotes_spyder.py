@@ -1,3 +1,4 @@
+from typing import Any, Dict
 from urllib.parse import urljoin
 
 import scrapy
@@ -11,7 +12,7 @@ class QuotesSpider(scrapy.Spider):
     allowed_domains = ["quotes.toscrape.com"]
     start_urls = ["https://quotes.toscrape.com"]
 
-    def parse(self, response):
+    def parse(self, response: scrapy.http.Response) -> Dict[str, Any]:
         for quote in response.xpath("//div[@class='quote']"):
             tags = quote.xpath("div[@class='tags']/a/text()").extract()
             author = quote.xpath("span/small/text()").extract_first()
@@ -28,7 +29,7 @@ class QuotesSpider(scrapy.Spider):
             full_next_url = urljoin(self.start_urls[0], next_link)
             yield scrapy.Request(url=full_next_url, callback=self.parse)
 
-    def next_link(self, response):
+    def next_link(self, response: scrapy.http.Response) -> str:
         next_link = response.xpath("//li[@class='next']/a/@href").get()
         return next_link
 
