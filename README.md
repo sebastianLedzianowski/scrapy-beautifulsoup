@@ -51,10 +51,11 @@ poetry install
 
 To run this project, you will need to add the following environment variables to your `.env` file.
 
-`DB_HOST=`
-
-`DB_DB=`
-
+```bash
+# MongoDB settings
+DB_HOST=
+DB_DB=
+```
 ---
 
 **Note**: Ensure to keep your `.env` file secure and never commit it to the repository to protect sensitive information.
@@ -101,7 +102,7 @@ The `import_to_mongodb` script reads data from the Scrapy and BeautifulSoup JSON
       - `authors_spyder.json`: JSON file containing quotes prased using scrapy_spyder.
 
 - **beautifulsoup/**
- - `quotes_soup.py`: BeautifulSoup for collecting quotes.
+  - `quotes_soup.py`: BeautifulSoup for collecting quotes.
   - `quotes_soup.json`: JSON file containing quotes scraped using BeautifulSoup.
   - `authors_soup.py`: BeautifulSoup for collecting authors.
   - `authors_soup.json`: JSON file containing author information scraped using BeautifulSoup.
