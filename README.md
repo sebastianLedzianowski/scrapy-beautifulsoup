@@ -38,15 +38,17 @@ cd scrapy-beautifulsoup
 3.Set up a virtual environment and activate it (optional but recommended):
 
 ```bash
-python -m venv venv
+virtualenv venv
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 ```
 
 4.Install dependencies using Poetry:
 
 ```bash
+pip install poetry
 poetry install
 ```
+
 ## Configuration ⚙️
 
 To run this project, you will need to add the following environment variables to your `.env` file.
