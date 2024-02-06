@@ -26,13 +26,13 @@ Make sure you have the following installed on your machine:
 1.Clone the repository:
 
 ```bash
-git clone https://github.com/sebastianLedzianowski/scrapy-beautifulsoup.git  
+git clone https://github.com/sebastianLedzianowski/web-scraping.git
 ```
 
 2.Navigate to the Project Directory:
 
 ```bash
-cd scrapy-beautifulsoup
+cd web-scraping
 ```
 
 3.Set up a virtual environment and activate it (optional but recommended):
